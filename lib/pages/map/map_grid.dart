@@ -23,7 +23,7 @@ class _MapGridOverlayState extends ConsumerState<MapGridOverlay> {
     final gridColor = Colors.black;
     final gridWidth = 0.5;
 
-    // 일정 배율 이상에서만 격자 표시
+    // 일정 배율 이상일 땐 격자를 표시하지 않음
     if (scale > widget.map.zoomSwitchThreshold) {
       return SizedBox.shrink();
     }

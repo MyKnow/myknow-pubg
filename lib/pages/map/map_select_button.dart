@@ -16,6 +16,8 @@ class _MapSelectButtonState extends ConsumerState<MapSelectButton> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
+      underline: const SizedBox.shrink(),
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       value: widget.map.id,
       items: MapList().maps
           .map((map) => DropdownMenuItem(value: map.id, child: Text(map.name)))
