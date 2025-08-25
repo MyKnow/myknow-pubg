@@ -9,6 +9,10 @@ import 'package:myknow/pages/map/map_select_button.dart';
 import 'package:myknow/providers/map/interactive_view_provider.dart';
 import 'package:myknow/providers/map/map_providers.dart';
 
+// TODO:
+// 1. 각 맵 당 특수 장소(비밀의 방, 벙커), 탈 것 위치의 마커 Model을 생성하고 View를 구현한다.
+// 2. 박격포를 위한 거리 계산 기능을 구현한다.
+//
 class MapView extends ConsumerStatefulWidget {
   const MapView({super.key});
 
