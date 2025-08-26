@@ -92,3 +92,10 @@ class Rifle {
     required this.isSupplyOnly,
   });
 }
+
+// # Rifle List
+// : Rifle 리스트
+//
+// # [Parameters]
+
+class RifleList {}
