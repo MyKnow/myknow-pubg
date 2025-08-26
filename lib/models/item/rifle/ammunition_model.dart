@@ -1,8 +1,11 @@
-// lib/models/item/rifle/bullet_model.dart
+// lib/models/item/rifle/ammunition_model.dart
 // Created by MyKnow on August 25, 2025
-// : Rifle의 탄종류와 각 특성을 정의합니다.
+// : PUBG에서 사용되는 탄종류와 각 특성을 정의합니다.
 
-// # BulletType
+import 'package:flutter/material.dart';
+import 'package:myknow/models/asset_model.dart';
+
+// # Type
 // : 탄종류 Enum
 //
 // # Elements
@@ -17,9 +20,7 @@
 // 9. bolt: 화살
 // 10. flare: 플레어
 // 11. mortar: 박격포탄
-import 'package:myknow/models/asset_model.dart';
-
-enum BulletType {
+enum AmmunitionType {
   b762,
   b556,
   b9,
@@ -33,38 +34,38 @@ enum BulletType {
   mortar,
 }
 
-// # BulletTypeExtension
-// : BulletType Enum을 위한 extension
+// # AmmunitionTypeExtension
+// : AmmunitionType Enum을 위한 extension
 //
 // # Methods
 // - getItemId -> String: Item ID
 // - displayName -> String: 탄 종류 이름(한국어)
 // - weight -> double: 탄종류 무게(발 당 무게)
 //
-extension BulletTypeExtension on BulletType {
+extension AmmunitionTypeExtension on AmmunitionType {
   String get itemId {
     switch (this) {
-      case BulletType.b762:
+      case AmmunitionType.b762:
         return 'Item_Ammo_762mm_C';
-      case BulletType.b556:
+      case AmmunitionType.b556:
         return 'Item_Ammo_556mm_C';
-      case BulletType.b9:
+      case AmmunitionType.b9:
         return 'Item_Ammo_9mm_C';
-      case BulletType.b300:
+      case AmmunitionType.b300:
         return 'Item_Ammo_300Magnum_C';
-      case BulletType.b45:
+      case AmmunitionType.b45:
         return 'Item_Ammo_45ACP_C';
-      case BulletType.b57:
+      case AmmunitionType.b57:
         return 'Item_Ammo_57mm_C';
-      case BulletType.b12:
+      case AmmunitionType.b12:
         return 'Item_Ammo_12Guage_C';
-      case BulletType.b12s:
+      case AmmunitionType.b12s:
         return 'Item_Ammo_12GuageSlug_C';
-      case BulletType.bolt:
+      case AmmunitionType.bolt:
         return 'Item_Ammo_Bolt_C';
-      case BulletType.flare:
+      case AmmunitionType.flare:
         return 'Item_Ammo_Flare_C';
-      case BulletType.mortar:
+      case AmmunitionType.mortar:
         return 'Item_Ammo_Mortar_C';
     }
   }
@@ -72,34 +73,38 @@ extension BulletTypeExtension on BulletType {
   // # displayName
   // : assets/jsons/dictionaries/telemetry/item/itemId.json에 정의된 이름을 가져온다.
   String get displayName {
-    return Asset.json.getValueFromJson(itemId, 'displayName') ??
-        'Unknown Bullet';
+    final detailPath = 'dictionaries/telemetry/item/itemId';
+    return Asset.json.getValueFromJson(detailPath, itemId) ?? 'Unknown Bullet';
   }
 
   double get weight {
     switch (this) {
-      case BulletType.b762:
+      case AmmunitionType.b762:
         return 0.6;
-      case BulletType.b556:
+      case AmmunitionType.b556:
         return 0.5;
-      case BulletType.b9:
+      case AmmunitionType.b9:
         return 0.3;
-      case BulletType.b300:
+      case AmmunitionType.b300:
         return 1;
-      case BulletType.b45:
+      case AmmunitionType.b45:
         return 0.4;
-      case BulletType.b57:
+      case AmmunitionType.b57:
         return 0.2;
-      case BulletType.b12:
+      case AmmunitionType.b12:
         return 1.25;
-      case BulletType.b12s:
+      case AmmunitionType.b12s:
         return 1.25;
-      case BulletType.bolt:
+      case AmmunitionType.bolt:
         return 2;
-      case BulletType.flare:
+      case AmmunitionType.flare:
         return 1;
-      case BulletType.mortar:
+      case AmmunitionType.mortar:
         return 20;
     }
+  }
+
+  String get imagePath {
+    return '${Asset.image.path}/items/Ammunition/None/$itemId.png';
   }
 }

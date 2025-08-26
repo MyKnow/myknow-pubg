@@ -23,6 +23,10 @@ class TestLogger {
     print(log('Fail: $message', functionName: functionName));
   }
 
+  static void printInfo(String message, {String? functionName}) {
+    print(log('Info: $message', functionName: functionName));
+  }
+
   static String reason(String message, {String? functionName}) {
     return log(message, functionName: functionName);
   }
