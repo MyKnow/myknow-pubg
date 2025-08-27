@@ -13,7 +13,7 @@ import 'package:myknow/models/map/map_model.dart';
 // # [Elements]
 // - values -> List<Rifle>: 권총 리스트
 class PistolList {
-  static final imageAssetPath = '${Asset.image.path}/items/Weapon/Main';
+  static final imageAssetPath = '${Asset.image.path}/items/Weapon/Handgun';
 
   static final pistolDefaultFireMode = const [FireMode.single];
 

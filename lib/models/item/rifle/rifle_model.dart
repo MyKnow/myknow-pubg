@@ -78,7 +78,7 @@ class Rifle {
   final List<GameMap> spawnMap;
   final bool isSupplyOnly;
 
-  String get name =>
+  String get displayName =>
       Asset.json.getValueFromJson(
         'dictionaries/telemetry/item/itemId',
         codeName,

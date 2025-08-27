@@ -168,7 +168,7 @@ class GameMap {
   // 열거형으로 Map을 찾는 함수
   static GameMap fromEnum(MapName name) {
     final mapList = MapList();
-    return mapList.maps.firstWhere((map) => map.name == name.name);
+    return mapList.maps.firstWhere((map) => map.name == name.displayName);
   }
 
   @override
