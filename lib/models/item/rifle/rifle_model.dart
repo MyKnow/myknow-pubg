@@ -2,6 +2,8 @@
 // Created by MyKnow on August 25, 2025
 // : Rifle Model을 정의합니다.
 
+import 'package:myknow/models/asset_model.dart';
+import 'package:myknow/models/item/rifle/ammunition_model.dart';
 import 'package:myknow/models/map/map_model.dart';
 
 // # FireMode
@@ -43,7 +45,7 @@ enum MagazineType { original, quick, large, largeQuick }
 //
 // [Parameters]
 // - id -> int: 고유 ID
-// - name -> String: 원문 이름
+// - codeName -> String: 코드 이름
 // - assetPath -> String: 이미지 경로
 // - rifleType -> RifleType: Rifle 종류
 // - sizeOfMagazine -> Map<MagazineType, int>: 탄창 크기
@@ -59,25 +61,34 @@ enum MagazineType { original, quick, large, largeQuick }
 // - isSupplyOnly -> bool: 보급 전용 무기
 class Rifle {
   final int id;
-  final String name;
+  final String codeName;
   final String assetPath;
+  final AmmunitionType ammunitionType;
   final RifleType rifleType;
   final Map<MagazineType, int> sizeOfMagazine;
   final List<FireMode> fireMode;
   final double damage;
   final Map<FireMode, int> rpm;
   final int bulletSpeed;
-  final Map<MagazineType, double> reloadTime;
+  final double reloadTime;
   final int spread;
   final double moa;
   final int damageReductionDistance;
   final List<GameMap> spawnMap;
   final bool isSupplyOnly;
 
+  String get name =>
+      Asset.json.getValueFromJson(
+        'dictionaries/telemetry/item/itemId',
+        codeName,
+      ) ??
+      'Unknown Rifle';
+
   const Rifle({
     required this.id,
-    required this.name,
+    required this.codeName,
     required this.assetPath,
+    required this.ammunitionType,
     required this.rifleType,
     required this.sizeOfMagazine,
     required this.fireMode,
@@ -92,10 +103,3 @@ class Rifle {
     required this.isSupplyOnly,
   });
 }
-
-// # Rifle List
-// : Rifle 리스트
-//
-// # [Parameters]
-
-class RifleList {}

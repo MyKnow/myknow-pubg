@@ -2,7 +2,6 @@
 // Created by MyKnow on August 25, 2025
 // : PUBG에서 사용되는 탄종류와 각 특성을 정의합니다.
 
-import 'package:flutter/material.dart';
 import 'package:myknow/models/asset_model.dart';
 
 // # Type
