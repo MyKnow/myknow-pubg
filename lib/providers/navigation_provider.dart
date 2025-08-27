@@ -5,6 +5,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myknow/pages/map/map_view.dart';
+import 'package:myknow/pages/weapon/weapon_view.dart';
 
 // bottom navigation index provider
 // 0: home
@@ -33,7 +34,7 @@ class BottomNavIndexProvider extends StateNotifier<int> {
       case 0:
         return const Center(child: Text('홈'));
       case 1:
-        return const Center(child: Text('무기'));
+        return const WeaponView();
       case 2:
         return const MapView();
       case 3:

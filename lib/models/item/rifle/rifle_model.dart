@@ -78,12 +78,15 @@ class Rifle {
   final List<GameMap> spawnMap;
   final bool isSupplyOnly;
 
-  String get displayName =>
-      Asset.json.getValueFromJson(
-        'dictionaries/telemetry/item/itemId',
-        codeName,
-      ) ??
-      'Unknown Rifle';
+  String get displayName {
+    final data = AssetCache.get('itemId');
+    return data?[codeName] ?? 'Unknown Rifle';
+  }
+
+  double get dps {
+    final highestRpm = rpm.values.reduce((a, b) => a > b ? a : b);
+    return highestRpm * damage / 60;
+  }
 
   const Rifle({
     required this.id,

@@ -77,7 +77,7 @@ class ARList {
       sizeOfMagazine: arDefaultMagazine,
       fireMode: [FireMode.single, FireMode.threeBurst],
       damage: 43.0,
-      rpm: const {FireMode.single: 800, FireMode.threeBurst: 1600},
+      rpm: const {FireMode.single: 800, FireMode.threeBurst: 800},
       bulletSpeed: (278, 910),
       reloadTime: (3.36, 3.05),
       spread: 5,

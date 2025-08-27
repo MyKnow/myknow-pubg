@@ -21,5 +21,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/maps/
-    - assets/jsons/
-    
+    - assets/images/items/Weapon/Handgun/
+    - assets/images/items/Weapon/Main/
+    - assets/images/items/Weapon/Melee/
+    - assets/jsons/dictionaries/telemetry/item/

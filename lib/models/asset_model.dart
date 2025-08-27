@@ -10,7 +10,8 @@
 // 2. sound: 사운드
 // 3. json: JSON 파일
 import 'dart:convert';
-import 'dart:io';
+
+import 'package:flutter/services.dart' show rootBundle;
 
 enum Asset { image, sound, json }
 
@@ -38,20 +39,19 @@ extension AssetExtension on Asset {
   }
 }
 
-// # JsonExtension
-// : Asset Enum을 위한 extension
-//
-// # Methods
-// - getValueFromJson -> String: 지정된 detailPath의 JSON 파일에서, key에 해당하는 value를 가져온다.
-//
-extension JsonExtension on Asset {
-  String? getValueFromJson(String detailPath, String key) {
-    final jsonPath = path;
-    final jsonFile = File('$jsonPath/$detailPath.json');
-    final jsonContent = jsonFile.readAsStringSync();
-    final jsonMap = json.decode(jsonContent);
+class AssetCache {
+  static final Map<String, dynamic> _cache = {};
 
-    final value = jsonMap[key] as String?;
-    return value;
+  /// 앱 시작 시 필요한 JSON 파일들을 미리 읽어오기
+  static Future<void> preload() async {
+    final content = await rootBundle.loadString(
+      'assets/jsons/dictionaries/telemetry/item/itemId.json',
+    );
+    _cache['itemId'] = json.decode(content);
+  }
+
+  /// 캐시에서 동기적으로 접근
+  static dynamic get(String key) {
+    return _cache[key];
   }
 }

@@ -72,8 +72,8 @@ extension AmmunitionTypeExtension on AmmunitionType {
   // # displayName
   // : assets/jsons/dictionaries/telemetry/item/itemId.json에 정의된 이름을 가져온다.
   String get displayName {
-    final detailPath = 'dictionaries/telemetry/item/itemId';
-    return Asset.json.getValueFromJson(detailPath, itemId) ?? 'Unknown Bullet';
+    final data = AssetCache.get('itemId');
+    return data?[itemId] ?? 'Unknown Bullet';
   }
 
   double get weight {
