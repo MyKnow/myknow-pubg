@@ -69,11 +69,12 @@ class Rifle {
   final List<FireMode> fireMode;
   final double damage;
   final Map<FireMode, int> rpm;
-  final int bulletSpeed;
-  final double reloadTime;
-  final int spread;
+  final (int min, int max) bulletSpeed;
+  final (double original, double tactical) reloadTime;
+  final double spread;
   final double moa;
-  final int damageReductionDistance;
+  final (double min, double max) damageReductionDistance;
+  final (int min, int max) zeroDistance;
   final List<GameMap> spawnMap;
   final bool isSupplyOnly;
 
@@ -99,6 +100,7 @@ class Rifle {
     required this.spread,
     required this.moa,
     required this.damageReductionDistance,
+    required this.zeroDistance,
     required this.spawnMap,
     required this.isSupplyOnly,
   });

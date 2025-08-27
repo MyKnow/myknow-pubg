@@ -4,6 +4,111 @@
 
 import 'package:myknow/models/asset_model.dart';
 
+// Map 이름 Enum
+enum MapName {
+  erangel,
+  vikendi,
+  deston,
+  haven,
+  karakin,
+  miramar,
+  paramo,
+  rondo,
+  sanhok,
+  taego,
+  trainingMain,
+}
+
+// Map 이름 Enum
+//
+// # [Elements]
+// - displayName -> String: Map의 원문 이름
+// - codeName -> String: Map의 코드 이름
+extension MapNameExtension on MapName {
+  String get displayName {
+    switch (this) {
+      case MapName.erangel:
+        return 'Erangel';
+      case MapName.vikendi:
+        return 'Vikendi';
+      case MapName.deston:
+        return 'Deston';
+      case MapName.haven:
+        return 'Haven';
+      case MapName.karakin:
+        return 'Karakin';
+      case MapName.miramar:
+        return 'Miramar';
+      case MapName.paramo:
+        return 'Paramo';
+      case MapName.rondo:
+        return 'Rondo';
+      case MapName.sanhok:
+        return 'Sanhok';
+      case MapName.taego:
+        return 'Taego';
+      case MapName.trainingMain:
+        return 'Training Main';
+    }
+  }
+
+  String get codeName {
+    switch (this) {
+      case MapName.erangel:
+        return 'Erangel_Main';
+      case MapName.vikendi:
+        return 'DihorOtok_Main';
+      case MapName.deston:
+        return 'Kiki_Main';
+      case MapName.haven:
+        return 'Heaven_Main';
+      case MapName.karakin:
+        return 'Summerland_Main';
+      case MapName.miramar:
+        return 'Desert_Main';
+      case MapName.paramo:
+        return 'Chimera_Main';
+      case MapName.rondo:
+        return 'Neon_Main';
+      case MapName.sanhok:
+        return 'Savage_Main';
+      case MapName.taego:
+        return 'Tiger_Main';
+      case MapName.trainingMain:
+        return 'Training_Main';
+    }
+  }
+
+  MapName fromName(String name) {
+    switch (name) {
+      case 'Erangel':
+        return MapName.erangel;
+      case 'Vikendi':
+        return MapName.vikendi;
+      case 'Deston':
+        return MapName.deston;
+      case 'Haven':
+        return MapName.haven;
+      case 'Karakin':
+        return MapName.karakin;
+      case 'Miramar':
+        return MapName.miramar;
+      case 'Paramo':
+        return MapName.paramo;
+      case 'Rondo':
+        return MapName.rondo;
+      case 'Sanhok':
+        return MapName.sanhok;
+      case 'Taego':
+        return MapName.taego;
+      case 'Training Main':
+        return MapName.trainingMain;
+      default:
+        throw ArgumentError('Invalid map name: $name');
+    }
+  }
+}
+
 // GameMap Class
 // [Parameters]
 // - id: 고유 ID
@@ -60,6 +165,12 @@ class GameMap {
     }
   }
 
+  // 열거형으로 Map을 찾는 함수
+  static GameMap fromEnum(MapName name) {
+    final mapList = MapList();
+    return mapList.maps.firstWhere((map) => map.name == name.name);
+  }
+
   @override
   String toString() => 'GameMap(id: $id, name: $name, size: ${sideLengthKm}km)';
 }
@@ -79,18 +190,18 @@ class MapInfo {
 
 class MapList {
   // 맵 정보 상수 (한 곳에서 관리)
-  static const List<MapInfo> _mapInfos = [
-    MapInfo(name: 'Erangel', sideLengthKm: 8.0),
-    MapInfo(name: 'Vikendi', sideLengthKm: 8.0),
-    MapInfo(name: 'Deston', sideLengthKm: 8.0),
-    MapInfo(name: 'Haven', sideLengthKm: 1.0),
-    MapInfo(name: 'Karakin', sideLengthKm: 2.0),
-    MapInfo(name: 'Miramar', sideLengthKm: 8.0),
-    MapInfo(name: 'Paramo', sideLengthKm: 3.0),
-    MapInfo(name: 'Rondo', sideLengthKm: 8.0),
-    MapInfo(name: 'Sanhok', sideLengthKm: 4.0),
-    MapInfo(name: 'Taego', sideLengthKm: 8.0),
-    MapInfo(name: 'Training_Main', sideLengthKm: 2.0),
+  static final List<MapInfo> _mapInfos = [
+    MapInfo(name: MapName.erangel.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.vikendi.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.deston.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.haven.displayName, sideLengthKm: 1.0),
+    MapInfo(name: MapName.karakin.displayName, sideLengthKm: 2.0),
+    MapInfo(name: MapName.miramar.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.paramo.displayName, sideLengthKm: 3.0),
+    MapInfo(name: MapName.rondo.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.sanhok.displayName, sideLengthKm: 4.0),
+    MapInfo(name: MapName.taego.displayName, sideLengthKm: 8.0),
+    MapInfo(name: MapName.trainingMain.displayName, sideLengthKm: 2.0),
     // 추후 추가할 맵들
     // MapInfo(name: 'Boardwalk', sideLengthKm: 2.0, hasTextVersion: false),
     // MapInfo(name: 'Camp_Jackal', sideLengthKm: 1.0, hasTextVersion: false),

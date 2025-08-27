@@ -2,9 +2,13 @@
 // Created by MyKnow on August 25, 2025
 // : Rifle List를 정의합니다.
 
-import 'package:myknow/models/asset_model.dart';
-import 'package:myknow/models/item/rifle/ammunition_model.dart';
+import 'package:myknow/models/item/rifle/list/ar_list.dart';
+import 'package:myknow/models/item/rifle/list/lmg_list.dart';
+import 'package:myknow/models/item/rifle/list/pistol_list.dart';
+import 'package:myknow/models/item/rifle/list/sg_list.dart';
+import 'package:myknow/models/item/rifle/list/smg_list.dart';
 import 'package:myknow/models/item/rifle/rifle_model.dart';
+import 'package:myknow/models/item/rifle/list/sr_list.dart';
 import 'package:myknow/models/map/map_model.dart';
 
 // # Rifle List
@@ -79,7 +83,14 @@ import 'package:myknow/models/map/map_model.dart';
 // - getRifleByIsSupplyOnly -> List<Rifle>: Rifle 보급 전용 무기로 Rifle을 가져온다.
 
 class RifleList {
-  static const List<Rifle> rifles = [];
+  static final List<Rifle> rifles = [
+    ...ARList.values,
+    ...SRList.values,
+    ...PistolList.values,
+    ...SGList.values,
+    ...LMGList.values,
+    ...SMGList.values,
+  ];
 
   static List<Rifle> getAllRifle() => rifles;
 
@@ -97,64 +108,4 @@ class RifleList {
 
   static List<Rifle> getRifleByIsSupplyOnly(bool isSupplyOnly) =>
       rifles.where((rifle) => rifle.isSupplyOnly == isSupplyOnly).toList();
-}
-
-// # AR List
-// : 돌격소총 리스트
-//
-// #
-// - values -> List<Rifle>: 돌격소총 리스트
-class ARList {
-  static final imageAssetPath = '${Asset.image.path}/items/Weapon/Main';
-
-  static final arDefaultMagazine = {
-    MagazineType.original: 30,
-    MagazineType.quick: 30,
-    MagazineType.large: 42,
-    MagazineType.largeQuick: 40,
-  };
-
-  static final arDefaultFireMode = const [FireMode.single, FireMode.auto];
-
-  static final List<Rifle> values = [
-    // 1. AKM(최초의 무기)
-    Rifle(
-      id: 1,
-      codeName: 'Item_Weapon_AK47_C',
-      assetPath: '$imageAssetPath/Item_Weapon_AK47_C.png',
-      rifleType: RifleType.ar,
-      ammunitionType: AmmunitionType.b762,
-      sizeOfMagazine: arDefaultMagazine,
-      fireMode: arDefaultFireMode,
-      damage: 48.0,
-      rpm: const {FireMode.single: 600, FireMode.auto: 600},
-      bulletSpeed: 715,
-      reloadTime: 3.22,
-      spread: 6,
-      moa: 4.8,
-      damageReductionDistance: 51,
-      spawnMap: const [],
-      isSupplyOnly: false,
-    ),
-
-    // 2. M416(최초의 무기)
-    Rifle(
-      id: 2,
-      codeName: 'Item_Weapon_HK416_C',
-      assetPath: '$imageAssetPath/Item_Weapon_HK416_C.png',
-      rifleType: RifleType.ar,
-      ammunitionType: AmmunitionType.b556,
-      sizeOfMagazine: arDefaultMagazine,
-      fireMode: const [FireMode.single, FireMode.auto],
-      damage: 40.0,
-      rpm: const {FireMode.single: 700, FireMode.auto: 700},
-      bulletSpeed: 880,
-      reloadTime: 3.14,
-      spread: 4,
-      moa: 2.6,
-      damageReductionDistance: 61,
-      spawnMap: const [],
-      isSupplyOnly: false,
-    ),
-  ];
 }
